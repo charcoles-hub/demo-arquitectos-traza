@@ -1,0 +1,409 @@
+---
+const proyectos = [
+  {
+    n: "A",
+    t: "Vivienda unifamiliar",
+    d: "Casas a medida donde la luz y el terreno marcan cada decisión, desde el primer croquis.",
+    mat: ["Hormigón visto", "Madera de roble", "Vidrio suelo-techo"],
+  },
+  {
+    n: "B",
+    t: "Reforma integral",
+    d: "Pisos y casas antiguas reescritas sin perder su carácter: muros que respiran, luz que entra.",
+    mat: ["Recuperación", "Suelo hidráulico", "Instalación vista"],
+  },
+  {
+    n: "C",
+    t: "Interiorismo",
+    d: "El proyecto no termina en la obra. Cuidamos cada mueble, cada remate, cada interruptor.",
+    mat: ["Mobiliario a medida", "Iluminación", "Materiales naturales"],
+  },
+  {
+    n: "D",
+    t: "Dirección de obra",
+    d: "Presencia semanal en la obra. Lo que se dibuja en el plano se ejecuta tal cual, sin sorpresas.",
+    mat: ["Control de calidad", "Certificación", "Cierre de presupuesto"],
+  },
+];
+const proceso = [
+  { f: "I", t: "Escucha y medición", d: "Visitamos el solar o la vivienda. Medimos, fotografiamos y entendemos cómo vives." },
+  { f: "II", t: "Anteproyecto", d: "Primeros planos y volumetría. Aquí se decide el carácter del proyecto." },
+  { f: "III", t: "Proyecto ejecutivo", d: "Planos técnicos, licencias y permisos. El papeleo lo llevamos nosotros." },
+  { f: "IV", t: "Dirección de obra", d: "Acompañamos la construcción semana a semana hasta la entrega de llaves." },
+];
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Traza · Estudio de arquitectura en Sant Just Desvern. Vivienda unifamiliar, reforma integral, interiorismo y dirección de obra en el Baix Llobregat." />
+    <title>Traza · Estudio de arquitectura · Sant Just Desvern</title>
+    <link rel="icon" type="image/svg+xml" href="/demo-arquitectos-traza/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Retícula de fondo -->
+    <svg class="grid-bg" aria-hidden="true" width="0" height="0">
+      <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+        <path d="M64 0H0V64" fill="none" stroke="currentColor" stroke-width="1"/>
+      </pattern>
+    </svg>
+
+    <header class="bar">
+      <a href="#top" class="wordmark">Traza</a>
+      <nav class="bar-nav">
+        <a href="#estudio">Estudio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#contacto" class="btn btn-sm">Hablemos</a>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="coord">41.3819° N, 2.0730° E · Sant Just Desvern</p>
+          <h1>El plano<br/>antes que<br/><em>el muro.</em></h1>
+          <p class="lead">Estudio de arquitectura en el Baix Llobregat. Diseñamos vivienda, reforma y obra nueva empezando siempre por lo mismo: entender cómo vas a habitar el espacio.</p>
+          <div class="hero-cta">
+            <a href="#contacto" class="btn">Cuéntanos tu proyecto</a>
+            <a href="#proyectos" class="link-arrow">Ver el trabajo →</a>
+          </div>
+        </div>
+        <div class="hero-frame">
+          <div class="frame-media" data-parallax>
+            <img src="https://images.unsplash.com/photo-1520529890308-f503006340b4?auto=format&fit=crop&w=1200&q=80" alt="Escalera de hormigón vista desde abajo, luz natural entrando por el hueco" loading="eager" />
+          </div>
+          <span class="frame-tick frame-tick--tl" aria-hidden="true"></span>
+          <span class="frame-tick frame-tick--br" aria-hidden="true"></span>
+          <p class="frame-cap">Hormigón visto · luz cenital</p>
+        </div>
+      </section>
+
+      <!-- ESTUDIO -->
+      <section id="estudio" class="estudio">
+        <p class="estudio-text" data-reveal>
+          <strong>Traza</strong> es un estudio pequeño con encargos grandes. Marc Oller y Laia Ferrer, arquitectos colegiados por el COAC, llevan doce años proyectando en Sant Just Desvern, Esplugues y Cornellà con el mismo método: pocos clientes a la vez, visitas semanales a obra y un plano que no cambia de opinión a mitad de proyecto.
+        </p>
+        <dl class="estudio-facts" data-reveal>
+          <div><dt>12</dt><dd>años de estudio</dd></div>
+          <div><dt>47</dt><dd>proyectos construidos</dd></div>
+          <div><dt>1</dt><dd>equipo, sin subcontratar diseño</dd></div>
+        </dl>
+      </section>
+
+      <!-- PROYECTOS -->
+      <section id="proyectos" class="proyectos">
+        <ul class="plist">
+          {proyectos.map((p) => (
+            <li class="prow" data-reveal>
+              <span class="prow-n">{p.n}</span>
+              <div class="prow-body">
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </div>
+              <ul class="prow-mat">
+                {p.mat.map((m) => <li>{m}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- PROCESO -->
+      <section id="proceso" class="proceso">
+        <h2 data-reveal>De la primera visita a la<br/>última llave, <em>cuatro fases.</em></h2>
+        <ol class="ptrack">
+          {proceso.map((s, i) => (
+            <li class="pstep" data-reveal>
+              <span class="pstep-mark">{s.f}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- MANIFIESTO -->
+      <section class="manifiesto">
+        <blockquote data-reveal>
+          <p>Un edificio bien trazado se explica solo. Nuestro trabajo no es dibujar bonito: es dibujar <em>lo justo</em> para que la obra no necesite improvisar.</p>
+          <cite>— Marc Oller, fundador de Traza</cite>
+        </blockquote>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="contacto">
+        <div class="contacto-info">
+          <h2>Empecemos por<br/>una visita <em>sin coste.</em></h2>
+          <dl class="facts">
+            <div><dt>Estudio</dt><dd>Carrer de Bonavista 21<br/>08960 Sant Just Desvern</dd></div>
+            <div><dt>Horario</dt><dd>Lun–Vie · 9:00 – 18:00<br/>Visitas de obra a convenir</dd></div>
+            <div><dt>Contacto</dt><dd>+34 93 371 22 09<br/>hola@estudiotraza.es</dd></div>
+          </dl>
+        </div>
+        <form class="contacto-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="TU-ACCESS-KEY-WEB3FORMS" />
+          <input type="hidden" name="subject" value="Nueva consulta · Traza" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
+          <h3>Cuéntanos tu proyecto</h3>
+          <label>Nombre<input name="name" required autocomplete="name" /></label>
+          <label>Teléfono<input name="phone" required autocomplete="tel" inputmode="tel" /></label>
+          <label>¿Qué necesitas?
+            <select name="service">
+              {proyectos.map((p) => <option>{p.t}</option>)}
+            </select>
+          </label>
+          <button type="submit" class="btn btn-block">Solicitar visita</button>
+          <p class="form-note">Respondemos en menos de 24 horas laborables.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span class="wordmark sm">Traza</span>
+      <p>Estudio de arquitectura · COAC 68.421 · Sant Just Desvern</p>
+      <div class="foot-social">
+        <a href="#">Instagram</a><a href="#">LinkedIn</a>
+      </div>
+    </footer>
+
+    <script>
+      const io = new IntersectionObserver((es) => {
+        for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }, { threshold: 0.16 });
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const parallaxEl = document.querySelector('[data-parallax]');
+      if (parallaxEl && !reduce) {
+        let ticking = false;
+        addEventListener('scroll', () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            parallaxEl.style.transform = `translateY(${Math.min(y * 0.12, 60)}px)`;
+            ticking = false;
+          });
+        }, { passive: true });
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper: #f3f0ea;
+    --paper-2: #e9e4d8;
+    --ink: #232019;
+    --ink-soft: #5c5646;
+    --line: #cec5ae;
+    --blueprint: #29456e;
+    --blueprint-bright: #4a6da3;
+    --oak: #a97c50;
+    --oak-bright: #c99a6a;
+    --display: "Instrument Serif", Georgia, serif;
+    --ui: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--ui); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  ::selection { background: var(--blueprint); color: var(--paper); }
+  a { color: inherit; text-decoration: none; }
+  em { font-style: italic; color: var(--blueprint); }
+
+  .grid-bg { position: absolute; width: 0; height: 0; }
+
+  /* Top bar */
+  .bar {
+    position: sticky; top: 0; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px clamp(24px, 6vw, 80px);
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  }
+  .wordmark { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 30px; }
+  .wordmark.sm { font-size: 24px; }
+  .bar-nav { display: flex; gap: 34px; font-size: 14px; letter-spacing: .03em; }
+  .bar-nav a { color: var(--ink-soft); transition: color .25s; }
+  .bar-nav a:hover { color: var(--blueprint); }
+
+  .btn {
+    display: inline-block; font-family: var(--ui); font-weight: 600; font-size: 15px;
+    letter-spacing: .01em; padding: 14px 28px; border-radius: 2px;
+    background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+    transition: transform .2s, background .25s, box-shadow .25s;
+  }
+  .btn:hover { background: var(--blueprint); border-color: var(--blueprint); transform: translateY(-2px); box-shadow: 0 10px 26px -10px rgba(41,69,110,.5); }
+  .btn-sm { padding: 10px 20px; font-size: 14px; }
+  .btn-block { width: 100%; padding: 16px; }
+  .link-arrow { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--ink); padding-bottom: 3px; transition: border-color .25s, color .25s; }
+  .link-arrow:hover { border-color: var(--blueprint); color: var(--blueprint); }
+
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(30px, 5vw, 70px);
+    align-items: center; min-height: 86vh;
+    padding: clamp(50px, 8vw, 90px) clamp(24px, 6vw, 80px) 70px;
+    position: relative;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; color: var(--line);
+    background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 64px 64px; opacity: .5;
+    mask-image: linear-gradient(180deg, black, transparent 92%);
+  }
+  .coord {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--blueprint);
+    font-weight: 500; margin-bottom: 26px; font-variant-numeric: tabular-nums;
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(52px, 8.5vw, 108px); line-height: .96; letter-spacing: -.01em;
+    margin-bottom: 28px;
+  }
+  .lead { max-width: 40ch; color: var(--ink-soft); font-size: clamp(16px, 1.6vw, 19px); }
+  .hero-cta { display: flex; align-items: center; gap: 28px; margin-top: 38px; flex-wrap: wrap; }
+  .hero-copy { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(26px); } }
+
+  .hero-frame {
+    aspect-ratio: 4/5; border: 1px solid var(--ink); border-radius: 2px;
+    position: relative; overflow: hidden; animation: rise 1.1s .15s cubic-bezier(.2,.7,.2,1) both;
+    background: var(--paper-2);
+  }
+  .frame-media { position: absolute; inset: -8% -8% -8% -8%; overflow: hidden; }
+  .frame-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.15) contrast(1.05); }
+  .frame-tick { position: absolute; width: 18px; height: 18px; border: 2px solid var(--oak); z-index: 2; }
+  .frame-tick--tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+  .frame-tick--br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+  .frame-cap {
+    position: absolute; left: 14px; bottom: 14px; z-index: 2;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--paper);
+    background: color-mix(in srgb, var(--ink) 78%, transparent); padding: 6px 10px; border-radius: 2px;
+  }
+
+  /* Secciones comunes */
+  section { padding-left: clamp(24px, 6vw, 80px); padding-right: clamp(24px, 6vw, 80px); }
+  .estudio, .proyectos, .proceso, .manifiesto, .contacto { padding-top: clamp(70px, 9vw, 120px); padding-bottom: clamp(70px, 9vw, 120px); }
+  [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  [data-reveal].in { opacity: 1; transform: none; }
+
+  /* Estudio */
+  .estudio { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
+  .estudio-text {
+    font-family: var(--display); font-size: clamp(24px, 3.2vw, 38px); line-height: 1.32; letter-spacing: -.005em;
+    max-width: 34ch;
+  }
+  .estudio-text strong { font-style: italic; font-weight: 400; color: var(--blueprint); }
+  .estudio-facts { display: grid; gap: 30px; padding-top: 6px; }
+  .estudio-facts dt { font-family: var(--display); font-style: italic; font-size: 48px; color: var(--oak); line-height: 1; }
+  .estudio-facts dd { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; }
+
+  /* Proyectos */
+  .proyectos { border-top: 1px solid var(--line); }
+  .plist { list-style: none; }
+  .prow {
+    display: grid; grid-template-columns: 70px 1.6fr 1fr; gap: clamp(20px, 3vw, 44px);
+    align-items: start; padding: 34px 0; border-bottom: 1px solid var(--line);
+  }
+  .prow-n { font-family: var(--display); font-style: italic; font-size: 34px; color: var(--blueprint); line-height: 1; }
+  .prow-body h3 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 2.6vw, 32px); margin-bottom: 10px; letter-spacing: -.005em; }
+  .prow-body p { color: var(--ink-soft); max-width: 48ch; }
+  .prow-mat { list-style: none; display: flex; flex-direction: column; gap: 8px; padding-top: 6px; }
+  .prow-mat li {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0; color: var(--ink-soft);
+    padding-left: 14px; position: relative;
+  }
+  .prow-mat li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 1px; background: var(--oak); }
+
+  /* Proceso */
+  .proceso { border-top: 1px solid var(--line); background: var(--paper-2); }
+  .proceso h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(32px, 4.6vw, 54px); line-height: 1.06; letter-spacing: -.01em;
+    margin-bottom: clamp(50px, 7vw, 90px); max-width: 18ch;
+  }
+  .ptrack { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px); position: relative; }
+  .ptrack::before { content: ""; position: absolute; top: 11px; left: 0; right: 0; height: 1px; background: var(--line); }
+  .pstep { position: relative; padding-top: 40px; }
+  .pstep-mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 28px; height: 24px; padding: 0 6px; border-radius: 12px; background: var(--paper-2); border: 1.5px solid var(--blueprint);
+    color: var(--blueprint); font-family: var(--mono); font-size: 11px; font-weight: 600; position: absolute; top: 0; left: 0;
+  }
+  .pstep h3 { font-family: var(--display); font-weight: 400; font-size: 24px; margin-bottom: 10px; }
+  .pstep p { color: var(--ink-soft); font-size: 15px; }
+
+  /* Manifiesto */
+  .manifiesto { text-align: center; }
+  .manifiesto blockquote { max-width: 900px; margin: 0 auto; }
+  .manifiesto p {
+    font-family: var(--display); font-weight: 400; font-style: italic;
+    font-size: clamp(26px, 4vw, 44px); line-height: 1.24; letter-spacing: -.005em;
+  }
+  .manifiesto cite { display: block; margin-top: 30px; font-style: normal; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* Contacto */
+  .contacto { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 90px); align-items: center; border-top: 1px solid var(--line); }
+  .contacto h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(34px, 5vw, 56px); line-height: 1.04; letter-spacing: -.01em;
+  }
+  .facts { margin-top: 44px; display: grid; gap: 26px; }
+  .facts dt { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blueprint); margin-bottom: 7px; font-weight: 600; }
+  .facts dd { color: var(--ink); line-height: 1.5; }
+  .contacto-form { background: var(--paper); border: 1px solid var(--ink); border-radius: 3px; padding: clamp(26px, 3vw, 40px); box-shadow: 0 30px 70px -46px rgba(35,32,25,.5); }
+  .contacto-form h3 { font-family: var(--display); font-weight: 400; font-size: 28px; margin-bottom: 26px; }
+  .contacto-form label { display: block; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; }
+  .contacto-form input, .contacto-form select {
+    width: 100%; margin-top: 8px; padding: 13px 14px; background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 2px; color: var(--ink);
+    font-family: var(--ui); font-size: 16px; text-transform: none; letter-spacing: normal;
+    transition: border-color .25s;
+  }
+  .contacto-form input:focus, .contacto-form select:focus { outline: none; border-color: var(--blueprint); }
+  .form-note { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 16px; text-transform: none; letter-spacing: normal; }
+
+  /* Footer */
+  .foot {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    padding: 34px clamp(24px, 6vw, 80px); border-top: 1px solid var(--line);
+  }
+  .foot p { color: var(--ink-soft); font-size: 14px; }
+  .foot-social { display: flex; gap: 22px; font-size: 14px; }
+  .foot-social a { color: var(--ink-soft); transition: color .25s; }
+  .foot-social a:hover { color: var(--blueprint); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .estudio { grid-template-columns: 1fr; }
+    .ptrack { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+    .ptrack::before { display: none; }
+  }
+  @media (max-width: 860px) {
+    .bar-nav { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 40px; }
+    .hero-frame { max-width: 420px; margin: 0 auto; }
+    .prow { grid-template-columns: 44px 1fr; }
+    .prow-mat { grid-column: 2 / -1; flex-direction: row; flex-wrap: wrap; gap: 14px; padding-top: 4px; }
+    .contacto { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .ptrack { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, [data-reveal] { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+</style>
