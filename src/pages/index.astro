@@ -31,6 +31,12 @@ const proceso = [
   { f: "III", t: "Proyecto ejecutivo", d: "Planos técnicos, licencias y permisos. El papeleo lo llevamos nosotros." },
   { f: "IV", t: "Dirección de obra", d: "Acompañamos la construcción semana a semana hasta la entrega de llaves." },
 ];
+const reviews = [
+  { n: "Núria B.", a: "N", t: "hace 1 mes", q: "Reformaron nuestro piso de Sant Just entero. Lo que más me sorprendió: el presupuesto de obra se cerró antes de empezar y se cumplió." },
+  { n: "David S.", a: "D", t: "hace 3 semanas", q: "Nos hicieron la casa en Esplugues. Venían a obra cada semana y nos mandaban fotos y acta de cada visita. Serios de verdad." },
+  { n: "Montse P.", a: "M", t: "hace 2 meses", q: "Marc y Laia escuchan. El proyecto que nos entregaron no era su casa, era la nuestra. Y la licencia la llevaron ellos enteros." },
+];
+const img = (f: string) => `${import.meta.env.BASE_URL}/img/${f}`.replace("//", "/");
 ---
 <!doctype html>
 <html lang="es">
@@ -39,7 +45,14 @@ const proceso = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Traza · Estudio de arquitectura en Sant Just Desvern. Vivienda unifamiliar, reforma integral, interiorismo y dirección de obra en el Baix Llobregat." />
     <title>Traza · Estudio de arquitectura · Sant Just Desvern</title>
-    <link rel="icon" type="image/svg+xml" href="/demo-arquitectos-traza/favicon.svg" />
+    <meta name="theme-color" content="#f3f0ea" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Traza · Estudio de arquitectura en Sant Just Desvern" />
+    <meta property="og:description" content="Vivienda unifamiliar, reforma integral, interiorismo y dirección de obra en el Baix Llobregat. Primera visita sin coste." />
+    <meta property="og:image" content="https://charcoles-hub.github.io/demo-arquitectos-traza/img/og.jpg" />
+    <meta property="og:url" content="https://charcoles-hub.github.io/demo-arquitectos-traza/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`.replace("//","/")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -77,11 +90,11 @@ const proceso = [
         </div>
         <div class="hero-frame">
           <div class="frame-media" data-parallax>
-            <img src="https://images.unsplash.com/photo-1520529890308-f503006340b4?auto=format&fit=crop&w=1200&q=80" alt="Escalera de hormigón vista desde abajo, luz natural entrando por el hueco" loading="eager" />
+            <img src={img("villa.webp")} alt="Vivienda unifamiliar de volúmenes blancos con jardín, proyectada por el estudio" width="1200" height="1500" fetchpriority="high" decoding="async" />
           </div>
           <span class="frame-tick frame-tick--tl" aria-hidden="true"></span>
           <span class="frame-tick frame-tick--br" aria-hidden="true"></span>
-          <p class="frame-cap">Hormigón visto · luz cenital</p>
+          <p class="frame-cap">Vivienda unifamiliar · entregada 2024</p>
         </div>
       </section>
 
@@ -113,6 +126,10 @@ const proceso = [
             </li>
           ))}
         </ul>
+        <figure class="obra" data-reveal>
+          <img src={img("casa.webp")} alt="Vivienda de obra nueva con volumen de piedra oscura y terraza en cubierta" width="1400" height="950" loading="lazy" decoding="async" />
+          <figcaption class="frame-cap frame-cap--obra">Obra nueva en Esplugues · dirección de obra completa</figcaption>
+        </figure>
       </section>
 
       <!-- PROCESO -->
@@ -137,15 +154,43 @@ const proceso = [
         </blockquote>
       </section>
 
+      <!-- RESEÑAS -->
+      <section class="valoracion">
+        <header class="val-head">
+          <p class="coord">Lo que dicen los clientes</p>
+          <h2>4,9 sobre 5 <em>en Google</em></h2>
+          <p class="reviews-count">63 reseñas · Baix Llobregat</p>
+        </header>
+        <ul class="reviews">
+          {reviews.map((r) => (
+            <li class="review" data-reveal>
+              <div class="review-head">
+                <span class="avatar" aria-hidden="true">{r.a}</span>
+                <div>
+                  <strong>{r.n}</strong>
+                  <span class="review-meta">{r.t}</span>
+                </div>
+              </div>
+              <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>{r.q}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <!-- CONTACTO -->
       <section id="contacto" class="contacto">
         <div class="contacto-info">
           <h2>Empecemos por<br/>una visita <em>sin coste.</em></h2>
           <dl class="facts">
-            <div><dt>Estudio</dt><dd>Carrer de Bonavista 21<br/>08960 Sant Just Desvern</dd></div>
+            <div><dt>Estudio</dt><dd>Carrer de Bonavista 21<br/>08960 Sant Just Desvern<br/><span class="fact-extra">TRAM T1·T2 Walden, a 5 min a pie</span></dd></div>
             <div><dt>Horario</dt><dd>Lun–Vie · 9:00 – 18:00<br/>Visitas de obra a convenir</dd></div>
-            <div><dt>Contacto</dt><dd>+34 93 371 22 09<br/>hola@estudiotraza.es</dd></div>
+            <div><dt>Contacto</dt><dd><a href="tel:+34682371209">+34 682 371 209</a><br/><a href="https://wa.me/34682371209">WhatsApp</a> · <a href="mailto:hola@estudiotraza.es">hola@estudiotraza.es</a></dd></div>
           </dl>
+          <a class="mapa" href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Bonavista+21+Sant+Just+Desvern" target="_blank" rel="noopener">
+            <img src={img("mapa.webp")} alt="Mapa de Sant Just Desvern con el estudio señalado" width="768" height="520" loading="lazy" decoding="async" />
+            <span class="mapa-cta">Cómo llegar →</span>
+          </a>
         </div>
         <form class="contacto-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="TU-ACCESS-KEY-WEB3FORMS" />
@@ -165,6 +210,12 @@ const proceso = [
       </section>
     </main>
 
+    <nav class="dock" aria-label="Contacto rápido">
+      <a href="tel:+34682371209"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1z"/></svg>Llamar</a>
+      <a href="https://wa.me/34682371209"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1a13 13 0 0 1-5-3.3 9.4 9.4 0 0 1-2-3.2c-.2-.7 0-1.3.4-1.7l.6-.6c.2-.2.5-.2.7.1l1 1.7c.1.3.1.5 0 .7l-.4.5c-.2.2-.2.4-.1.6a7.6 7.6 0 0 0 3.4 3c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.7-.1l1.7.9c.3.1.4.4.3.7z"/></svg>WhatsApp</a>
+      <a href="#contacto" class="dock-cta">Solicitar visita</a>
+    </nav>
+
     <footer class="foot">
       <span class="wordmark sm">Traza</span>
       <p>Estudio de arquitectura · COAC 68.421 · Sant Just Desvern</p>
@@ -174,14 +225,10 @@ const proceso = [
     </footer>
 
     <script>
-      const io = new IntersectionObserver((es) => {
-        for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      }, { threshold: 0.16 });
-      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
-
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const desktop = window.matchMedia('(min-width: 861px)').matches;
       const parallaxEl = document.querySelector('[data-parallax]');
-      if (parallaxEl && !reduce) {
+      if (parallaxEl && !reduce && desktop) {
         let ticking = false;
         addEventListener('scroll', () => {
           if (ticking) return;
@@ -245,6 +292,7 @@ const proceso = [
     background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
     transition: transform .2s, background .25s, box-shadow .25s;
   }
+  .btn { transition: background .25s, border-color .25s, transform .5s linear(0, .55 18%, 1.04 42%, .98 60%, 1), box-shadow .3s; }
   .btn:hover { background: var(--blueprint); border-color: var(--blueprint); transform: translateY(-2px); box-shadow: 0 10px 26px -10px rgba(41,69,110,.5); }
   .btn-sm { padding: 10px 20px; font-size: 14px; }
   .btn-block { width: 100%; padding: 16px; }
@@ -297,8 +345,16 @@ const proceso = [
   /* Secciones comunes */
   section { padding-left: clamp(24px, 6vw, 80px); padding-right: clamp(24px, 6vw, 80px); }
   .estudio, .proyectos, .proceso, .manifiesto, .contacto { padding-top: clamp(70px, 9vw, 120px); padding-bottom: clamp(70px, 9vw, 120px); }
-  [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-  [data-reveal].in { opacity: 1; transform: none; }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 8% cover 26%;
+      }
+      @keyframes reveal { from { opacity: 0; transform: translateY(24px); } }
+    }
+  }
 
   /* Estudio */
   .estudio { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
@@ -386,6 +442,50 @@ const proceso = [
   .foot-social a { color: var(--ink-soft); transition: color .25s; }
   .foot-social a:hover { color: var(--blueprint); }
 
+  /* Obra construida */
+  .obra { position: relative; margin-top: clamp(40px, 6vw, 70px); border: 1px solid var(--ink); border-radius: 2px; overflow: hidden; }
+  .obra img { display: block; width: 100%; height: clamp(280px, 42vw, 520px); object-fit: cover; }
+  .frame-cap--obra { position: absolute; left: 14px; bottom: 14px; }
+
+  /* Reseñas de Google */
+  .valoracion { border-top: 1px solid var(--line); padding-top: clamp(70px, 9vw, 120px); padding-bottom: clamp(70px, 9vw, 120px); text-align: center; }
+  .val-head { margin-bottom: 50px; }
+  .val-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 4.6vw, 54px); line-height: 1.06; letter-spacing: -.01em; }
+  .reviews-count { color: var(--ink-soft); font-size: 14px; margin-top: 10px; }
+  .reviews {
+    list-style: none; display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr);
+    max-width: 1040px; margin-inline: auto; text-align: left;
+  }
+  .review { background: #faf8f3; border: 1px solid var(--line); border-radius: 3px; padding: 22px 24px; }
+  .review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .review-head strong { display: block; font-size: 15px; }
+  .avatar {
+    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--blueprint); color: var(--paper); font-weight: 700; flex: none;
+  }
+  .review-meta { font-size: 12.5px; color: var(--ink-soft); }
+  .stars { color: #f4b400; letter-spacing: 2px; font-size: 15px; margin-bottom: 8px; }
+  .review p { font-size: 15.5px; color: var(--ink-soft); }
+
+  /* Mapa */
+  .fact-extra { color: var(--ink-soft); font-size: 14px; }
+  .facts a { border-bottom: 1px solid color-mix(in srgb, var(--blueprint) 45%, transparent); font-weight: 500; }
+  .facts a:hover { color: var(--blueprint); }
+  .mapa { display: block; position: relative; margin-top: 32px; border: 1px solid var(--ink); border-radius: 2px; overflow: hidden; }
+  .mapa img { display: block; width: 100%; height: 230px; object-fit: cover; }
+  .mapa-cta {
+    position: absolute; right: 14px; bottom: 14px; background: var(--ink); color: var(--paper);
+    font-size: 13px; font-weight: 600; letter-spacing: .04em; padding: 9px 15px; border-radius: 2px;
+  }
+  .mapa:hover .mapa-cta { background: var(--blueprint); }
+
+  /* Detalles tipográficos */
+  .hero h1, .proceso h2, .contacto h2, .val-head h2 { text-wrap: balance; }
+  .lead, .prow-body p, .pstep p, .review p, .estudio-text { text-wrap: pretty; }
+
+  /* Barra fija de contacto (solo móvil) */
+  .dock { display: none; }
+
   /* Responsive */
   @media (max-width: 900px) {
     .estudio { grid-template-columns: 1fr; }
@@ -394,11 +494,52 @@ const proceso = [
   }
   @media (max-width: 860px) {
     .bar-nav { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 40px; }
-    .hero-frame { max-width: 420px; margin: 0 auto; }
+    .dock {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 1px;
+      background: var(--line); border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom);
+      font-size: 13px; letter-spacing: .02em;
+    }
+    .dock a {
+      background: var(--paper); color: var(--ink); min-height: 56px;
+      display: flex; align-items: center; justify-content: center; gap: 7px; font-weight: 600;
+    }
+    .dock svg { width: 17px; height: 17px; fill: var(--blueprint); }
+    .dock-cta { background: var(--ink) !important; color: var(--paper) !important; }
+    body { padding-bottom: 56px; }
+
+    /* la foto de obra pasa a ser el fondo del primer pantallazo */
+    .hero { grid-template-columns: 1fr; min-height: 86svh; padding-top: 90px; padding-bottom: 44px; align-content: end; }
+    .hero::before { display: none; }
+    .hero-frame {
+      position: absolute; inset: 0; aspect-ratio: auto; border: 0; border-radius: 0;
+      max-width: none; margin: 0; z-index: 0; animation: none; overflow: hidden; background: var(--ink);
+    }
+    .frame-media { inset: 0; }
+    .frame-media img { filter: none; }
+    .hero-frame::after {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(178deg, rgba(20,18,14,.28) 0%, rgba(20,18,14,.52) 45%, rgba(20,18,14,.86) 100%);
+    }
+    .frame-tick { display: none; }
+    .frame-cap:not(.frame-cap--obra) { display: none; }
+    .hero-copy { position: relative; z-index: 2; color: var(--paper); }
+    .hero-copy .coord { color: #b8c8e2; }
+    .hero-copy em { color: #c99a6a; }
+    .hero-copy .lead { color: #ddd7ca; }
+    .hero-copy .link-arrow { color: var(--paper); border-color: rgba(243,240,234,.45); }
+
     .prow { grid-template-columns: 44px 1fr; }
     .prow-mat { grid-column: 2 / -1; flex-direction: row; flex-wrap: wrap; gap: 14px; padding-top: 4px; }
     .contacto { grid-template-columns: 1fr; }
+    .reviews { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%;
+      overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px;
+      margin-inline: calc(clamp(24px, 6vw, 80px) * -1); padding-inline: clamp(24px, 6vw, 80px);
+      scrollbar-width: none;
+    }
+    .reviews::-webkit-scrollbar { display: none; }
+    .review { scroll-snap-align: center; }
   }
   @media (max-width: 560px) {
     .ptrack { grid-template-columns: 1fr; }
